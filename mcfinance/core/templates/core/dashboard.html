@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+<a class="btn btn-lg btn-block btn-primary" href="{% url 'account-list'%}">{% trans 'Accounts' %}</a>
+<a class="btn btn-lg btn-block btn-primary" href="{% url 'category-list'%}">{% trans 'Categories' %}</a>
+<a class="btn btn-lg btn-block btn-primary" href="{% url 'payee-list'%}">{% trans 'Payees' %}</a>
+<a class="btn btn-lg btn-block btn-primary" href="{% url 'transaction-list'%}">{% trans 'Transactions' %}</a>
+{% endblock %}

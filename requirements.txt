@@ -1,0 +1,5 @@
+Django==1.7.1
+django-bootstrap3==4.11.0
+mongoengine==0.8.7
+pymongo==2.7.2
+blinker==1.3

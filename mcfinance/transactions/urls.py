@@ -1,0 +1,60 @@
+from django.conf.urls import patterns, url
+
+urlpatterns = patterns('',
+
+    # Account
+    url(r'^accounts/$',
+        'mcfinance.transactions.views.accounts.account_list',
+        name='account-list'),
+    url(r'^accounts/create/$',
+        'mcfinance.transactions.views.accounts.account_form',
+        name='account-create'),
+    url(r'^accounts/edit/(?P<account_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.accounts.account_form',
+        name='account-edit'),
+    url(r'^accounts/delete/(?P<account_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.accounts.account_delete',
+        name='account-delete'),
+
+    # Category
+    url(r'^categories/$',
+        'mcfinance.transactions.views.categories.category_list',
+        name='category-list'),
+    url(r'^categories/create/$',
+        'mcfinance.transactions.views.categories.category_form',
+        name='category-create'),
+    url(r'^categories/edit/(?P<category_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.categories.category_form',
+        name='category-edit'),
+    url(r'^categories/delete/(?P<category_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.categories.category_delete',
+        name='category-delete'),
+
+    # Payee
+    url(r'^payees/$',
+        'mcfinance.transactions.views.payees.payee_list',
+        name='payee-list'),
+    url(r'^payees/create/$',
+        'mcfinance.transactions.views.payees.payee_form',
+        name='payee-create'),
+    url(r'^payees/edit/(?P<payee_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.payees.payee_form',
+        name='payee-edit'),
+    url(r'^payees/delete/(?P<payee_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.payees.payee_delete',
+        name='payee-delete'),
+
+    # Transaction
+    url(r'^transactions/$',
+        'mcfinance.transactions.views.transactions.transaction_list',
+        name='transaction-list'),
+    url(r'^transactions/create/$',
+        'mcfinance.transactions.views.transactions.transaction_form',
+        name='transaction-create'),
+    url(r'^transactions/edit/(?P<transaction_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.transactions.transaction_form',
+        name='transaction-edit'),
+    url(r'^transactions/delete/(?P<transaction_id>[0-9a-f]{24})/$',
+        'mcfinance.transactions.views.transactions.transaction_delete',
+        name='transaction-delete'),
+)

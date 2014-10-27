@@ -1,0 +1,59 @@
+{% load static i18n bootstrap3 %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ section_title }} | MC Finance</title>
+    <link href="{% static 'lib/bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/pickadate/themes/classic.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/pickadate/themes/classic.date.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/datatables/css/jquery.dataTables.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">{% trans 'Toggle navigation' %}</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'dashboard' %}">{% trans 'MC Finance' %}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="{% url 'account-list'%}">{% trans 'Accounts' %}</a></li>
+            <li><a href="{% url 'category-list'%}">{% trans 'Categories' %}</a></li>
+            <li><a href="{% url 'payee-list'%}">{% trans 'Payees' %}</a></li>
+            <li><a href="{% url 'transaction-list'%}">{% trans 'Transactions' %}</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          {% bootstrap_messages %}
+          {% if section_title %}
+          <h1 class="page-header">{{ section_title }}</h1>
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'lib/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static 'lib/bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'lib/pickadate/picker.js' %}"></script>
+    <script src="{% static 'lib/pickadate/picker.date.js' %}"></script>
+    <script src="{% static 'lib/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+  </body>
+</html>

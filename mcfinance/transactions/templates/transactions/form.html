@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n bootstrap3 %}
+
+
+{% block content %}
+<form class="form" action="" method="post">{% csrf_token %}
+    {% bootstrap_field form.account %}
+
+    {% bootstrap_field form.transaction_type %}
+
+    {% bootstrap_field form.payee %}
+
+    {% bootstrap_field form.category %}
+
+    {% bootstrap_field form.date %}
+
+    {% bootstrap_field form.amount addon_before='$' %}
+
+    {% bootstrap_field form.description %}
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% trans 'Save' %}
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}
