@@ -45,6 +45,9 @@ INSTALLED_APPS = (
     # MC Finance apps
     'mcfinance.core.CoreConfig',
     'mcfinance.transactions.TransactionsConfig',
+
+    # Others
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (

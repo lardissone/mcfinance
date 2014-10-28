@@ -3,6 +3,15 @@
 
 
 {% block content %}
+<div class="row">
+    <div class="col-md-6">
+        Total: ARS {{ total }}
+    </div>
+    <div class="col-md-6">
+        <figure>{{ cats_chart|safe }}</figure>
+    </div>
+</div>
+
 <a class="btn btn-lg btn-block btn-primary" href="{% url 'account-list'%}">{% trans 'Accounts' %}</a>
 <a class="btn btn-lg btn-block btn-primary" href="{% url 'category-list'%}">{% trans 'Categories' %}</a>
 <a class="btn btn-lg btn-block btn-primary" href="{% url 'payee-list'%}">{% trans 'Payees' %}</a>
