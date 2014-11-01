@@ -16,7 +16,7 @@
           <li><a href="{% url 'switch-account' account|getid %}">{{ account.name }}</a></li>
         {% endfor %}
         <li class="divider"></li>
-        <li><a href="#">{% trans 'Create new account' %}</a></li>
+        <li><a href="{% url 'account-create' %}">{% trans 'Create new account' %}</a></li>
       </ul>
     </li>
   </ul>
