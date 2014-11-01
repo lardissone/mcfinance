@@ -4,13 +4,22 @@ from django.contrib import messages
 
 import datetime
 
-from mcfinance.transactions.documents import Transaction
+from mcfinance.transactions.documents import Transaction, Account
 from mcfinance.transactions.forms.transactions import TransactionForm
 
 
 def transaction_list(request):
+
+    selected_account = request.session.get('selected_account')
+    if selected_account:
+        account = Account.objects(id=selected_account).first()
+
+    filters = {}
+    if account:
+        filters = {'account': account}
+
     return render(request, 'transactions/list.html', {
-        'results': Transaction.objects.all(),
+        'results': Transaction.objects(**filters),
         'section_title': _('Transactions')
     })
 

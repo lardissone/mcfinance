@@ -11,7 +11,7 @@
 <br />
 <br />
 <br />
-<table class="table table-striped table-hover table-transactions">
+<table class="table table-striped table-hover table-transactions{% if results|length > 0 %} non-empty{% endif %}">
     <thead>
         <tr>
             <th>{% trans 'Date' %}</th>
@@ -36,7 +36,7 @@
     </tr>
     {% empty %}
     <tr class="warning">
-        <td colspan="4">{% trans 'No results found' %}</td>
+        <td colspan="5">{% trans 'No results found' %}</td>
     </tr>
     {% endfor %}
     </tbody>

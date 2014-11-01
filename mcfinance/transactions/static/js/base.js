@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-    if ($('.table-transactions').length > 0) {
+    if ($('.table-transactions').hasClass('non-empty')) {
 
         $('.table-transactions').dataTable();
 
