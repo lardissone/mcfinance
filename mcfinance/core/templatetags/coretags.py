@@ -1,6 +1,6 @@
 from django import template
 
-from mcfinance.transactions.documents import Account
+from mcfinance.transactions.documents import Account, Category, Payee
 
 
 register = template.Library()
@@ -20,6 +20,17 @@ register.inclusion_tag(
     takes_context=True)(accounts_selector)
 
 
-def getid(obj):
-    return str(obj.id)
-register.filter('getid', getid)
+def sidebar(context):
+    accounts = Account.objects.order_by('name')
+    categories = Category.objects.order_by('name')
+    payees = Payee.objects.order_by('name')
+
+    return {
+        'accounts': accounts,
+        'categories': categories,
+        'payees': payees,
+    }
+
+register.inclusion_tag(
+    'core/_sidebar.html',
+    takes_context=True)(sidebar)

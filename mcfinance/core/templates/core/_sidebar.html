@@ -1,0 +1,39 @@
+{% load i18n coretags %}
+
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <li>
+      <a href="#" data-toggle="collapse" data-target="#menu-accounts"><i class="glyphicon glyphicon-briefcase"></i> {% trans 'Accounts' %}</a>
+      <ul class="collapse" id="menu-accounts">
+        {% for account in accounts %}
+          <li>
+            <a href="{% url 'account-edit' account.id %}">{{ account.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+
+    <li>
+      <a href="#" data-toggle="collapse" data-target="#menu-categories"><i class="glyphicon glyphicon-tags"></i> {% trans 'Categories' %}</a>
+      <ul class="collapse" id="menu-categories">
+        {% for category in categories %}
+          <li>
+            <a href="{% url 'category-edit' category.id %}">{{ category.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+
+    <li>
+      <a href="#" data-toggle="collapse" data-target="#menu-payees"><i class="glyphicon glyphicon-user"></i> {% trans 'Payees' %}</a>
+      <ul class="collapse" id="menu-payees">
+        {% for payee in payees %}
+          <li>
+            <a href="{% url 'payee-edit' payee.id %}">{{ payee.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li><a href="{% url 'transaction-list'%}"><i class="glyphicon glyphicon-resize-full"></i> {% trans 'Transactions' %}</a></li>
+  </ul>
+</div>

@@ -2,7 +2,6 @@
 
 {% if accounts|length > 1 %}
 
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav">
     <li class="dropdown">
       {% if not selected_account %}
@@ -13,12 +12,12 @@
 
       <ul class="dropdown-menu" role="menu">
         {% for account in accounts %}
-          <li><a href="{% url 'switch-account' account|getid %}">{{ account.name }}</a></li>
+          <li><a href="{% url 'switch-account' account.id %}">{{ account.name }}</a></li>
         {% endfor %}
         <li class="divider"></li>
         <li><a href="{% url 'account-create' %}">{% trans 'Create new account' %}</a></li>
       </ul>
     </li>
   </ul>
-</div>
+
 {% endif %}
