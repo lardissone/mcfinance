@@ -1,4 +1,4 @@
-{% load static i18n bootstrap3 %}<!DOCTYPE html>
+{% load static i18n bootstrap3 coretags %}<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -26,6 +26,11 @@
           </button>
           <a class="navbar-brand" href="{% url 'dashboard' %}">{% trans 'MC Finance' %}</a>
         </div>
+
+        {% accounts_selector selected_account %}
+
+
+
       </div>
     </div>
 
@@ -45,6 +50,7 @@
           <h1 class="page-header">{{ section_title }}</h1>
           {% endif %}
           {% block content %}{% endblock %}
+          {{ selected_account }}
         </div>
       </div>
     </div>

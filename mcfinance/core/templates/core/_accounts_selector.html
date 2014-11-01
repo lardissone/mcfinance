@@ -1,0 +1,24 @@
+{% load i18n coretags %}
+
+{% if accounts|length > 1 %}
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      {% if not selected_account %}
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Select Account' %} <span class="caret"></span></a>
+      {% else %}
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ selected_account.name }} <span class="caret"></span></a>
+      {% endif %}
+
+      <ul class="dropdown-menu" role="menu">
+        {% for account in accounts %}
+          <li><a href="{% url 'switch-account' account|getid %}">{{ account.name }}</a></li>
+        {% endfor %}
+        <li class="divider"></li>
+        <li><a href="#">{% trans 'Create new account' %}</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+{% endif %}

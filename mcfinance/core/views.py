@@ -1,22 +1,32 @@
 from django.utils.translation import ugettext as _
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 import pygal
 from pygal.style import DarkSolarizedStyle
 
-from mcfinance.transactions.documents import Transaction
+from mcfinance.transactions.documents import Transaction, Account
 
 
 def dashboard(request):
 
-    # TODO: filter by account
-
     total = 0
     cats = {}
 
-    for t in Transaction.objects():
+    selected_account = request.session.get('selected_account')
+    if selected_account:
+        account = Account.objects(id=selected_account).first()
+    else:
+        # TODO: if not account selected, global stats
+        account = Account.objects().first()
+
+    filters = {}
+    if Account.objects().count() > 0:
+        filters = {'account': account}
+
+    for t in Transaction.objects(**filters):
         total += t.amount * (-1 if t.transaction_type == 'expense' else 1)
-        if not t.category.name in cats:
+        if t.category.name not in cats:
             cats[t.category.name] = 0
         cats[t.category.name] += t.amount
 
@@ -36,3 +46,17 @@ def dashboard(request):
         'categories': cats,
         'cats_chart': cats_chart.render()
     })
+
+
+def switch_account(request, account_id):
+
+    account = Account.objects(id=account_id).first()
+
+    if not account:
+        messages.error(request, _('Account doesn\'t exists.'))
+        return redirect('dashboard')
+
+    request.session['selected_account'] = str(account.id)
+    messages.success(request, _('Account changed to %s.') % account.name)
+
+    return redirect('dashboard')
